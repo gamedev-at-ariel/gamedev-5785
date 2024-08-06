@@ -1,0 +1,596 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>פיתוח משחקי מחשב - רכיבים רשמיים</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css">
+		<link rel="stylesheet" href="../revealjs/css/reveal.css">
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css">
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css">		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css">
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2> רכיבים רשמיים </h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+<section>
+	<h1>מה זה בכלל משחק?</h1>
+	<ul>
+		<li>
+		מה הם הרכיבים שחייבים להיות בכל משחק,
+		<br/>
+		אחרת הוא בכלל לא משחק?
+		</li>
+		<li>
+			מה מבדיל משחק מחוויות אחרות, כגון:
+		<br/>
+			האזנה לקונצרט;
+			ריצה על חוף הים;
+			השתוללות על השטיח עם הילדים;
+			...?
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2>רכיבים רשמיים של משחק</h2>
+	<ol>
+		<li class="fragment">שחקנים - players</li>
+		<li class="fragment">יעדים - objectives</li>
+		<li class="fragment">תהליכים - procedures</li>
+		<li class="fragment">חוקים - Rules</li>
+		<li class="fragment">משאבים - resources</li>
+		<li class="fragment">עימות - conflict</li>
+		<li class="fragment">גבולות - boundaries</li>
+		<li class="fragment">תוצאה - outcome</li>
+	</ol>
+</section>
+
+<section>
+	<h2>שחקנים</h2>
+	<section>
+	<ul>
+		<li class="fragment"><b>מספר השחקנים:</b>
+			אחד או הרבה? קבוע או משתנה?
+		</li>
+		<li class="fragment"><b>תפקידי השחקנים:</b>
+		זהים או שונים?</li>
+		<li class="fragment"><b>אינטראקציה בין שחקנים:</b>
+			<br/>
+			שחקן מול מחשב?
+			הרבה שחקנים מול מחשב?
+			<br/>
+			שחקן מול שחקן?
+			קבוצה מול קבוצה?
+			<br/>
+			שחקן מול קבוצה?
+			קבוצה מול מחשב?
+		</li>
+	</ul>
+	</section>
+
+
+
+	<section>
+		<table>
+		<tr>
+			<td>
+		שחקן מול שחקן
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/Yu2e866bEcM?start=100" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/zDwqdhJSj0I?start=30" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+		</table>
+	</section>
+
+	<section>
+		<table>
+		<tr>
+			<td>
+		שחקן מול קבוצה -
+				<br/>
+		תחרות חד-צדדית
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/hSds2KSFJJk?start=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/FYQXhwncjo0?start=5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+קבוצה מול מחשב -				<br/>
+משחק שיתופי
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/nmvOHSBg3So?start=120" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/3w6tvOmSgGM?start=5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+		</table>
+	</section>
+</section>
+
+
+
+<section>
+	<section>
+<h2>יעדים</h2>
+		<p>מה השחקן מנסה להשיג במהלך המשחק?</p>
+
+	<ul class="fragment">
+		<li>לכידה - capture</li>
+		<li>מרדף - chase</li>
+		<li>מרוץ - race</li>
+		<li>התאמה - alignment</li>
+		<li>חילוץ - rescue</li>
+		<li>בניה - construct</li>
+		<li>חקירה - explore</li>
+		<li>פתרון - solve</li>
+		<li>הישרדות - survival</li>
+	</ul>
+	</section>
+
+	<section>
+		<h2>איך המשחק מודיע מה היעדים?</h2>
+		<table>
+		<tr>
+			<td>
+מילולית			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/dFSYykrtZY0?start=600" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+חזותית
+			</td>
+			<td>
+<img class="quarter" src="objectives-bond.png"/>
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/cu9U9LGncPI?start=180" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+		</table>
+
+	</section>
+
+	<section>
+		<h2>שילוב בין יעדים שונים</h2>
+		<ul>
+			<li>יעדים מקבילים.
+				<br/>
+				<em>
+	דוגמה: פתרון תעלומה,  ובמקביל - בניית בית יפה.</em>
+			</li>
+			<li>יעדים לטווח קצר, בינוני וארוך.
+						<br/>
+	<em>דוגמה: להשיג אוכל; לשפר את היכולות; להציל את המלך.</em>
+			</li>
+			<li>יעדים סותרים.
+						<br/>
+	<em>דוגמה: בניית ארמון לעומת אימון חיילים.</em>
+			</li>
+		</ul>
+
+	</section>
+
+</section>
+
+
+<section>
+	<section>
+	<h2>תהליכים</h2>
+		<p>מה הפעולות שהשחקן עושה כדי להשיג את היעדים?</p>
+		<ul>
+			<li>starting action - מה עושים כדי להתחיל את המשחק?</li>
+			<li>core game loop - מה עושים כדי להתקדם במשחק?</li>
+			<li>resolving action - מה עושים כדי לפתור את המשחק?</li>
+		</ul>
+	</section>
+
+	<section>
+<h2>תהליכים רגילים</h2>
+		<ul class="fragment">
+			<li>הטלת קוביה</li>
+			<li>הזזת כלי על לוח</li>
+			<li>לקיחת / זריקת קלף</li>
+			<li>הליכה, ריצה, קפיצה</li>
+			<li>יריה, טעינה, החלפת נשק</li>
+			<li>קניה בחנות</li>
+			<li>בניית מבנה אסטרטגי</li>
+			<li>שיחה עם דמויות</li>
+			<li>בחירה בין אפשרויות בסיפור</li>
+			<li>...</li>
+		</ul>
+
+	</section>
+
+
+	<section>
+<h2>תהליכים מקוריים</h2>
+		<table>
+
+		<tr>
+			<td>
+כרייה והרכבה
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/ZppPgLNZ1so?start=60" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		<tr class="fragment">
+			<td>
+				יצירת שער (portal)
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/TJpTaiprtOg?start=20" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		</table>
+
+	</section>
+
+	<!--section>
+<h2>תהליכים מקוריים</h2>
+		<table>
+
+		<tr class="fragment">
+			<td>
+החזרת הזמן לאחור
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/8dinUbg2h70?start=60" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		</table>
+	</section-->
+
+	<section>
+	<h2>תהליכים מקוריים</h2>
+		<table style="font-size:80%">
+
+		<tr>
+			<td>
+				התחלפות עם חפצים
+				<small>שחר יוסי דר וודים, מחזור ה'תשפ"א</small>
+			</td>
+			<td>
+		<iframe class="quarter" src="https://www.youtube.com/embed/ABdJkWv6As0?start=15" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		<tr class="fragment">
+			<td>
+נגינה בגיטרה
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/SUacrWelB0M?start=5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		</table>
+		<a href="https://inventwithpython.com/blog/2012/07/30/need-a-game-idea-a-list-of-game-mechanics-and-a-random-mechanic-mixer/">עוד תהליכים מקוריים</a>
+	</section>
+
+
+	<section>
+		<h2>שאלות מנחות לתיכנון תהליכים</h2>
+		<p>מי
+			<br/>
+			עושה מה
+			<br/>
+			איפה
+			<br/>
+			מתי
+			<br/>
+			ואיך?
+		</p>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>חוקים</h2>
+			<p>מה מגביל את הפעולות שהשחקן יכול לעשות?</p>
+		<p class="fragment">דוגמה (מתוך פנדמיק):</p>
+		<ul class="fragment">
+			<li>
+				מותר לעבור בכל תור רק לעיר סמוכה,
+				אלא אם כן משתמשים בקלף של עיר רחוקה וטסים לשם.
+			</li>
+			<li>
+				אסור לשחקן להחזיק ביד יותר משבעה קלפים.
+			</li>
+			<li>
+				כדי לגלות תרופה צריך חמישה קלפים מאותו צבע.
+			</li>
+			<li>
+				רופאה יכולה לגלות תרופה עם ארבעה קלפים בלבד.
+			</li>
+			<li>
+				אם מספר קוביות-הזיהום בעיר גדול מ-3, הזיהום מתפרץ לערים הסמוכות.
+			</li>
+			<li>...</li>
+		</ul>
+	</section>
+
+
+	<section>
+	<h2>איך השחקן לומד את החוקים?</h2>
+		<table>
+		<tr>
+			<td>
+בבת אחת -
+				בחוברת הוראות
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.pundak.co.il/boardgames/reviews/434-pandemic" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+
+		<tr class="fragment">
+			<td>
+בהדרגה -
+				ב"tutorial level"
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/SYlsSXPvO6c?start=60" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+
+		</table>
+
+	</section>
+</section>
+
+
+<section>
+	<section>
+		<h2>משאבים</h2>
+					<p>מהם הנכסים
+					<b>הנדירים</b>
+						המסייעים לשחקן להשיג את היעד?</p>
+			<ul class="fragment">
+				<li>
+					<div class="smallfloat">
+					<img src="video-games-ruined-my-lives.png"/>
+					</div>
+					חיים / נשמות
+				</li>
+				<li>כלי-משחק</li>
+				<li>נקודות בריאות</li>
+				<li>מטבעות זהב</li>
+				<li>בגדים וחפצים</li>
+				<li>יחידת-שטח מיוחדת (עיר, מכרה..)</li>
+				<li>זמן</li>
+				<li>מספר פעולות / צעדים</li>
+			</ul>
+	</section>
+	<section>
+		<h2>איך מודיעים לשחקן על המשאבים?</h2>
+
+	<table>
+		<tr>
+			<td>
+			כלי משחק, מד בריאות,
+				<br/>
+			מספר צעדים
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/9mc6Izxd_P8?start=480" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+
+		<tr class="fragment">
+			<td>
+בגדים וחפצים
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/mm1c5PIBBMU?start=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+		</table>
+	</section>
+</section>
+
+
+<section>
+<h2>עימות</h2>
+	<section>
+	<p>
+		מה הם הגורמים
+		<b>		המקשים</b>
+		על השחקן להשיג את היעד,
+		וכך הופכים את המשחק למאתגר?
+	</p>
+
+
+	<table>
+		<tr>
+			<td>
+1. מכשולים
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/qktchbR-EX4?start=120" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+	</table>
+
+	</section>
+
+	<section>
+
+	<table>
+		<tr>
+			<td>
+2. יריבים
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/Au6vXbMexsE?start=5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+
+		<tr class="fragment">
+			<td>
+3. דילמות
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/Yohf8Fa15Jk?start=40" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+	</table>
+
+	</section>
+
+</section>
+
+
+<section>
+<h2>גבולות</h2>
+	<section>
+	<p>מהו המרחב שבו מתנהל המשחק?</p>
+		<ul class="fragment">
+			<li>לוח</li>
+			<li>מגרש</li>
+			<li>עולם סגור</li>
+			<li>עולם פתוח - שטוח/עגול</li>
+		</ul>
+	<p class="fragment">איך מודיעים לשחקן מהם הגבולות?</p>
+		<ul class="fragment">
+			<li>גבולות המסך</li>
+			<li>קירות, הרים, אוקיינוסים</li>
+			<li>מפות</li>
+		</ul>
+	</section>
+
+	<section>
+	<p>שיקולים בקביעת גבולות המשחק:</p>
+		<ul class="fragment">
+			<li>משמעות - לכל מקום במפה יש סיבה;</li>
+			<li>ניידות - קל להגיע ממקום למקום במפה;</li>
+			<li>התמצאות - קל לדעת איפה אני במפה;</li>
+			<li>עניין - חוויות מעניינות בתדירות גבוהה;</li>
+			<li>הכוונה - המפה רומזת לשחקן מה היעד הבא.</li>
+		</ul>
+	</section>
+
+
+</section>
+
+
+<section>
+	<section>
+<h2>תוצאה</h2>
+	<p>
+	כל משחק מתאפיין בתוצאה
+	<b>לא ודאית</b> -
+	תוצאה התלויה בפעולות השחקנים והמערכת.
+	</p>
+	<p>
+	סוגי תוצאות:
+	<ul class="fragment">
+		<li>משחק סכום אפס - ניצחון של אחד הוא הפסד של השני.</li>
+		<li>משחק שיתופי - ניצחון של אחד הוא ניצחון של השני.</li>
+		<li>משחק מורכב - משלב תחרות ושיתוף-פעולה.</li>
+	</ul>
+	</p>
+	</section>
+
+	<section>
+	<h2>תוצאה במשחק מורכב</h2>
+
+
+	<table>
+		<tr>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/folLrvMyIPU?start=2400" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/f2J-pdcNZus?start=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/p3Uos2fzIJ0?start=2" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+			<td>
+	<iframe class="quarter" src="https://www.youtube.com/embed/S0qjK3TWZE8?start=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
+		</tr>
+
+	</table>
+
+	</section>
+</section>
+
+
+
+
+
+<section>
+	<h2>סיכום - מרחב האפשרויות שלנו</h2>
+	<p class="green">
+כמעצבי משחק, אנחנו יכולים "לשחק" עם כל אחד מהרכיבים הרשמיים
+	כדי ליצור את חוויית השחקן הרצויה:</p>
+	<ol>
+		<li>שחקנים - players</li>
+		<li>יעדים - objectives</li>
+		<li>תהליכים - procedures</li>
+		<li>חוקים - rules</li>
+		<li>משאבים - resources</li>
+		<li>עימות - conflict</li>
+		<li>גבולות - boundaries</li>
+		<li>תוצאה - outcome</li>
+	</ol>
+</section>
+
+
+<section>
+	<h2><a href='github-and-gamedev.pdf'>עבודה עם גיטהאב</a></h2>
+</section>
+
+</div>
+</div>
+
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>

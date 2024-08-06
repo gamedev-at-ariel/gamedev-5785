@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<title>פיתוח משחקי מחשב - יוניטי - רכיבים דרמטיים</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css" />
+		<link rel="stylesheet" href="../revealjs/css/reveal.css" />
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css" />
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css" />		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css" />
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2> מנוע יוניטי - רכיבים דרמטיים</h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+<section>
+<h1>רכיבים דרמטיים</h1>
+	<ul>
+	<li> הנפשה - Animation</li>
+	<li>שמע - Audio</li>
+	<li>ממשק משתמש - UI</li>
+	<li>סרטים - VideoClip (?)</li>
+	</ul>
+</section>
+
+
+<section>
+<h1>הנפשה</h1>
+	<section>
+	<h2>מושגים:</h2>
+	<ul class="smaller">
+	<li>Timeline - ציר הזמן.</li>
+	<li>Animation Clip - סדרת שינויי מאפיינים על ציר-הזמן.</li>
+	<li>Keyframe - רגע על ציר-הזמן שבו קובעים את ערכי המאפיינים.</li>
+	<li>Animator Controller - מכונת מצבים של מעברים בין קטעי הנפשה.</li>
+	<li>Animator Component - רכיב המקשר בקר-הנפשה לעצם-משחק.</li>
+	</ul>
+	</section>
+
+	<section>
+		<h2>סוגי הנפשה:</h2>
+		<ul class="smaller">
+			<li>Bone Animation - הנפשה ע"י שינוי מאפיינים של תת-עצמים המייצגים חלקי-גוף.</li>
+			<li>Sprite Animation - הנפשה ע"י שינוי התמונה של ה-Sprite Renderer.
+				<div><em>Sprite sheet - אותה דמות במצבים שונים היוצרים אשליה של תנועה.</em></div>
+			</li>
+
+		</ul>
+	</section>
+
+	<section>
+	<h2>הנפשה וסקריפטים</h2>
+	<ul>
+<!--	<li>Animator Parameter - פרמטר הקובע מעבר בין מצבים.</li>-->
+	<li>תנאי מעבר מצב - Transition Condition -
+	<br/> &nbsp; <em> הקוד משפיע על האנימציה</em>
+	</li>
+	<li>אירועים - Events -
+		<br/> &nbsp;
+		<em>האנימציה משפיעה על הקוד</em></li>
+	</ul>
+	</section>
+
+</section>
+
+<section>
+	<h1>שמע</h1>
+
+	<section>
+		<h2>סוגים:</h2>
+		<table>
+			<thead>
+				<col style='background-color:#444'/>
+				<col style='background-color:#666'/>
+				<col style='background-color:#888'/>
+			</thead>
+			<tbody>
+			<tr>
+				<th>סוג</th><th>טווח</th><th>תפקיד</th>
+			</tr>
+			<tr>
+				<td>אפקטים</td><td>קצר</td><td>מידע על אירוע, משוב</td>
+			</tr>
+			<tr>
+				<td>מנגינת רקע</td><td>בינוני</td><td>מידע על הסביבה, רגשות </td>
+			</tr>
+			<tr>
+				<td>שיחה</td><td>ארוך</td><td>מידע על העלילה, דמויות </td>
+			</tr>
+		</tbody>
+		</table>
+		<p class=small>(מקור: Bond, chapter 4, page 47).</p>
+	</section>
+
+
+	<section>
+		<h2>מושגים:</h2>
+		<ul>
+			<li>מקור קול - AudioSource</li>
+			<li>מאזין קול - AudioListener</li>
+			<li>קובץ קול - AudioClip</li>
+		</ul>
+		<p><a href="http://www.freesound.org">FreeSound.org</a></p>
+	</section>
+</section>
+
+<section>
+<h1>ממשק משתמש</h1>
+	<p>האתגר:
+		להשאיר את הפקדים באותו מקום על המסך, בלי תלות במיקום המצלמה או בגודל המסך.
+	</p>
+	<h2>מושגים:</h2>
+	<ul>
+		<li>UI = User Interface = ממשק משתמש.</li>
+		<li>Canvas - לוח חלק להצגת פקדי UI.</li>
+		<li>RectTransform - יורש את Transform ומוסיף
+			<em>עוגנים</em>.</li>
+		<li>Anchor -
+			עוגן -
+			מקשר פקד UI לנקודה מסוימת במסך.</li>
+	</ul>
+</section>
+
+<section>
+<h1>ניהול סצינות</h1>
+<h2>מושגים:</h2>
+	<ul>
+		<li>Build order - סדר הבניה</li>
+		<li>SceneManager - טוען הסצינות</li>
+		<li>Singleton - דגם עיצוב לשמירת מידע בין סצינות</li>
+	</ul>
+</section>
+
+
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>

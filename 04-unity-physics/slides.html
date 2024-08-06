@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<title>פיתוח משחקי מחשב - פיסיקה</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css" />
+		<link rel="stylesheet" href="../revealjs/css/reveal.css" />
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css" />
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css" />		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css" />
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2>חוקי הפיסיקה</h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+<section>
+<h1>פיסיקה</h1>
+<p>המטרה: בניית עולם מציאותי.</p>
+<ul class="blue">
+	<li>קינמטיקה = התנועה של גוף במרחב ובזמן.</li>
+	<li>דינמיקה = הכוחות הגורמים לתנועה.</li>
+</ul>
+</section>
+
+
+<section>
+	<h1>קינמטיקה</h1>
+	<section>
+	<p class="blue">קינמטיקה = התנועה של גוף במרחב ובזמן.</p>
+	<ul>
+		<li>מיקום - position:
+			<div dir="ltr" style='text-align:left;font-size:smaller'>x, y, z &nbsp;&nbsp;  [meter]</div>
+		</li>
+		<li>מהירות - velocity:
+			<div dir="ltr" style='text-align:left;font-size:smaller'>
+				v<sub>x</sub> = &Delta;x / &Delta;t  &nbsp;&nbsp;
+				v<sub>y</sub> = &Delta;y / &Delta;t  &nbsp;&nbsp; 
+				v<sub>z</sub> = &Delta;z / &Delta;t  &nbsp;&nbsp;   [meter/sec]
+			</div> 
+		</li>
+		<li>תאוצה - acceleration:
+			<div dir="ltr" style='text-align:left;font-size:smaller'>
+				a<sub>x</sub> = &Delta;v<sub>x</sub> / &Delta;t  &nbsp;&nbsp;
+				a<sub>y</sub> = &Delta;v<sub>y</sub> / &Delta;t  &nbsp;&nbsp; 
+				a<sub>z</sub> = &Delta;v<sub>z</sub> / &Delta;t   &nbsp;&nbsp;  [meter/sec<sup>2</sup>]
+			</div>
+		</li>
+		<li>תאוצת הכבידה על פני כדור הארץ:
+			<div dir="ltr" style='text-align:left;font-size:smaller'>
+			a<sub>x</sub> = 0               &nbsp;&nbsp;
+			a<sub>y</sub> &cong; -10  &nbsp;&nbsp;
+			a<sub>z</sub> = 0   &nbsp;&nbsp;  [meter/sec<sup>2</sup>]
+		</div>
+	</li>
+	</ul>
+	</section>
+	<section>
+		<p class="blue">אדם קופץ מהרצפה. מהירותו ברגע הקפיצה: 20 מטר/שניה.</p>
+		<ol>
+			<li class="fragment">תוך כמה זמן יעצור?
+				<div class="fragment" dir="ltr">&Delta; v / a = &Delta; t </small></div>
+				<div class="fragment" dir="ltr">-20 <small>[m/s]</small> / -10 <small>[m/s<sup>2</sup>]</small> = 2 <small>[s]</small></div>
+			</li>
+			<li class="fragment">לאיזה גובה יגיע?
+				<div class="fragment" dir="ltr">v * &Delta; t = &Delta; x </small></div>
+				<div class="fragment" dir="ltr">(20+0)/2 <small>[m/s]</small> * 2 <small>[s]</small> = 20 <small>[m]</small></div>
+				<div class="fragment" dir="ltr">v<sup>2</sup> / (2 a)  = &Delta; x</div>
+				<div class="fragment" dir="ltr">a * (&Delta; t)<sup>2</sup> / 2 = &Delta; x</div>
+			</li>
+		</ol>
+	</section>
+	<section>
+		<p class="blue">
+			CharacterController  - רכיב למשחק עם קינמטיקה בלבד (ללא כוחות):</p>
+		<ul>
+			<li>אפשר להזיז אותו בעזרת השיטה Move;</li>
+			<li>הוא לא עובר דרך Collider פיסיקלי;</li>
+			<li>הוא יכול לטפס על מדרגות עד גובה מסויים, ועל שיפועים עד זוית מסוימת;</li>
+			<li>כל השאר - על אחריותנו.</li>
+		</ul>
+		<p class="small">ראו דוגמאות בתיקיה 1.</p>
+	</section>
+</section>
+	
+<section>
+	<h1>דינמיקה</h1>
+	<section>
+	<p class="blue">דינמיקה = הכוחות הגורמים לתנועה.</p>
+	<ul>
+		<li>כוח - Force;  &nbsp;&nbsp;&nbsp; מסה - mass:
+			<div dir="ltr" style='text-align:left'>
+				F<sub>x</sub>, F<sub>y</sub>, F<sub>z</sub> [Newton];   &nbsp;&nbsp;&nbsp;  m [kg]
+			</div>
+		</li>
+		<li><em>החוק השני של ניוטון:</em>
+			התאוצה של גוף עומדת ביחס ישר לסכום הכוחות הפועלים עליו:
+			<div dir="ltr" style='text-align:left'>
+				a = (&Sum;F) / m
+			</div>
+		</li>
+		<li><em>החוק השלישי של ניוטון:</em>
+			<div>
+			אם גוף א מפעיל כוח 
+			F
+			 על גוף ב,</div>
+			 <div>
+			אז גוף ב מפעיל כוח 
+			<span dir="ltr">-F</span>
+			על גוף א.</div>
+		</li>
+	</li>
+	</section>
+
+	<section>
+		<p class="blue">קוביה נעה במהירות 20 מטר לשניה, ומתנגשת בקוביה אחרת באותה מסה הנמצאת במנוחה.
+			לאחר ההתנגשות שתי הקוביות נעות יחד באותה מהירות. מהי מהירות זו?
+		</p>
+		<p class="smaller fragment">נסמן: F - הכוח המופעל על הקוביה הנחה;
+			&Delta;t - זמן ההתנגשות.
+		</p>
+		<ul dir="ltr" style="text-align:left">
+			<li class=fragment>
+				v = 0 + (F/m) * &Delta;t   - מהירות הקוביה השניה
+			</li>
+			<li class=fragment>
+				v = 20 - (F/m) * &Delta;t   - מהירות הקוביה הראשונה
+			</li>
+			<li class=fragment>
+				v = 20 / 2 = 10
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<p class="blue">
+			RigidBody [Dynamic] - 
+			רכיב למשחק עם כוחות.
+		</p>
+		<ul>
+			<li>AddForce - הוספת כוח קווי;</li>
+			<li>AddTorque - הוספת כוח סיבובי.</li>
+		</ul>
+		
+		<div dir='ltr'>
+			<p class="blue">
+			ForceMode:
+			</p>
+		<ul class="smaller">
+			<li>Force: v += (F/m) * &Delta; t</li>
+			<li>Acceleration: v += (F) * &Delta; t</li>
+			<li>Impulse: v += (F/m) </li>
+			<li>VelocityChange: v += (F)</li>
+		</ul>
+		</div>
+		<p class="small">
+		<a href="https://philipptheprogrammer.itch.io/unity-tutorial-how-to-move-your-player">
+			השוואה בין דרכים שונות לגרום לשחקן לזוז
+			</a></p>
+		</section>
+
+	<section>
+		<h2>חומרים פיסיקליים</h2>
+		ניתן להצמיד לכל מתנגש, חומר פיסיקלי עם מאפיינים:
+		<ul>
+			<li>Bounciness - מקדם האלסטיות:
+				0 = פלסטיק, 1 = גומי.
+			</li>
+			<li>Friction = מקדם החיכוך: 
+				0 = קרח, 1 = דבק.
+				<ul class="smaller" style="margin-right:1em">
+					<li>Dynamic Friction - כוח הפועל על גוף הנע על משטח, בניגוד לכיוון התנועה היחסית ביניהם.</li>
+					<li>Static Friction - כוח הפועל על גוף הנח על משטח, בניגוד לכיוון הכוחות המנסים להניע אותו.</li>
+				</ul>
+			</li>
+		</ul>
+		<p class="small">ראו דוגמאות בתיקיה 2.</p>
+		<!-- <p class="red smaller">הערה: Drag = כוח הפועל על גוף הנע דרך <em>נפח</em>, בניגוד לכיוון התנועה.</p> -->
+	</section>
+
+	</ul>
+</section>
+</section>
+
+<section class="smaller">
+	<h1>אירועי התנגשות פיסיקליים</h1>
+	<section>
+		<h2>התנגשות 2-ממדית - Collision2D</h2>
+		<ul>
+			<li>collision.collider - במי התנגשנו;</li>
+			<li>collision.relativeVelocity - באיזו מהירות;</li>
+			<li><span dir="ltr">collision.GetContacts()</span> - מה היו נקודות-המגע;</li>
+		</ul>
+		<h2>התנגשות 3-ממדית - Collision</h2>
+		<ul>
+			<li>collision.collider - במי התנגשנו;</li>
+			<li>collision.relativeVelocity - באיזו מהירות;</li>
+			<li>collision.impulse - באיזה כוח*זמן;</li>
+			<li><span dir="ltr">collision.GetContacts()</span> - מה היו נקודות-המגע;</li>
+		</ul>
+	</section>
+	<section>
+		<h2>שליחת קרניים - RayCasting</h2>
+		ניתן לשלוח מעין "קרן לייזר" מנקודה מסויימת לכיוון מסויים,
+		ולבדוק באיזה מתנגש/ים היא פגעה.
+		<ul>
+			<li>במנוע הדו-ממדי:
+				<a href="https://docs.unity3d.com/ScriptReference/Physics2D.Raycast.html">Physics2D.Raycast</a>
+				<br/>	 (הפגיעה הראשונה / כל הפגיעות).
+			</li>
+			<li>במנוע התלת-ממדי:
+				<a href="https://docs.unity3d.com/ScriptReference/Physics.Raycast.html">Physics.Raycast</a> (הפגיעה הראשונה) /
+				<a href="https://docs.unity3d.com/ScriptReference/Physics.RaycastAll.html">Physics.RaycastAll</a> (כל הפגיעות).
+			</li>
+		</ul>
+		<p class="red">Debug.DrawRay - ציור קרן בחלון הסצינה בלבד.</p>
+		<p class="small">ראו דוגמא 2 z.</p>
+	</section>
+
+</section>
+
+
+<section>
+	<section>
+		<h1>רכיבים פיסיקליים</h1>
+		<ul>
+			<li>Effector - רכיב המפעיל כוח.</li>
+			<li>Joint - רכיב המחבר שני גופים.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>אפקטורים - מפעילי כוח</h2>
+		<h3 class="red"> (בשני ממדים בלבד)</h3>
+		<ol>
+			<li>SurfaceEffector - משטח - למשל סרט נע <span class="small">(collision collider)</span>.</li>
+			<li>AreaEffector - איזור - למשל רוח  <span class="small">(trigger collider)</span>.</li>
+			<li>PointEffector - נקודה - למשל מגנט <span class="small">(collision collider + trigger collider)</span>.</li>
+			<li>BuoyancyEffector - ציפה - למשל מים או ג'לי  <span class="small">(trigger collider)</span>.</li>
+			<li>PlatformEffector - פלטפורמה - כמו כאן:</a> <span class="small">(collision collider)</span>.</li>
+
+			<table>
+				<tr>
+					<td>
+			<iframe class="quarter" src="https://www.youtube.com/embed/G7dRrWOmMvI?start=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</td>
+					<td>
+						<p class="small">ראו דוגמאות בתיקיה 3.</p>
+					</td>
+				</tr>
+			</table>
+		
+		</ol>
+	</section>
+
+	<section>
+		<h2>מחברים</h2>
+		<ol>
+			<li>DistanceJoint - מוט באורך קבוע.</li>
+			<li>SpringJoint - קפיץ (F = k*x).</li>
+			<li>TargetJoint - הצמדה לנקודה קבועה.</li>
+			<li>HingeJoint - ציר.</li>
+			<li>SliderJoint - החלקה - למשל דלת הזזה.</li>
+			<li>WheelJoint - גלגל.</li>
+		</ol>
+		<p class="small">ראו דוגמאות בתיקיה 4.</p>
+	</section>
+
+</section>	
+
+<section>
+<h1>פיסיקה - סיכום</h1>
+<p class="blue">
+	המנוע הפיסיקלי של יוניטי נותן לכם המון כלים לעיצוב עולם מציאותי או דמיוני.
+</p>
+
+<iframe class="quarter" src="https://www.youtube.com/embed/8zo5a_QvJtk?start=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<!--p>
+	<a href="https://www.youtube.com/watch?v=8zo5a_QvJtk">במאמץ קטן אפשר להגיע לביצועים מדהימים.</a>
+</p-->
+
+<p class="red">
+איזה עולם תעצבו? זה בידיים שלכם.
+</p>
+
+</section>
+
+</div>
+</div>
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>

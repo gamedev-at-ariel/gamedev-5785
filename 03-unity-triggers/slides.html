@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<title>פיתוח משחקי מחשב - יוניטי - בניית תהליכי ליבה</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css" />
+		<link rel="stylesheet" href="../revealjs/css/reveal.css" />
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css" />
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css" />		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css" />
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2> מנוע יוניטי - בניית תהליכי ליבה</h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+<section>
+	<h1>בניית תהליכי ליבה</h1>
+	<h2>נושאים ללימוד:</h2>
+	<ul>
+	<li>דגמים - Prefabs</li>
+	<li>התנגשויות - Collisions</li>
+	<li>ניהול שלבים - Scene management</li>
+	</ul>
+	<h2>משחקים להדגמה:</h2>
+	<ul>
+		<li>חלליות ב-2 ממדים</li>
+		<!--li>פלטפורמה ב-2.5 ממדים</li--->
+	</ul>
+</section>
+
+
+
+<section>
+	<h1>דגמים - Prefabs</h1>
+	<p class="blue">
+		Prefab = pre-fabricated =
+		דגם מוכן מראש של עצם-משחק, המאפשר לייצר עותקים רבים של אותו עצם.
+	</p>
+	<ol>
+		<li>יצירת דגם ע"י גרירה מההיררכיה</li>
+		<li>יצירת עותק ע"י גרירה לסצינה</li>
+		<li>Override - החלפת מאפיין של דגם באחד העותקים</li>
+		<li>שינוי מאפיין בדגם משנה את כל העותקים שלא הוחלפו</li>
+		<li>Apply - העתקת מאפיין מעותק אחד אל הדגם</li>
+		<li>Instantiate - יצירת עותק מתוך הקוד</li>
+		<li>קניית דגמים ב<a href="https://assetstore.unity.com/packages/2d/characters/2d-animated-spaceships-96852/">חנות נכסים - Asset Store</a></li>
+	</ol>
+</section>
+
+
+<section>
+	<section>
+		<h1>התנגשויות</h1>
+			<p>
+				"התנגשות" ביוניטי =
+				חפיפה מרחבית בין עצמים.
+			</p>
+			<h2>הרכיבים הדרושים:</h2>
+			<ol>
+				<li>Collider - מגדיר את המקום שהעצם תופס במרחב.</li>
+				<li>RigidBody - מגדיר את התנועה של הגוף במרחב.</li>
+			</ol>
+	</section>
+
+	<section>
+	<h2>סוגי התנגשויות</h2>
+		<table>
+			<tr>
+				<th></th>
+				<th style="border-left:solid 1pt white; border-right:solid 1pt white">שני ממדים</th>
+				<th>שלושה ממדים</th>
+			</tr>
+			<tr>
+				<th>בלי פיסיקה</th>
+				<td style="text-align:left; font-size:smaller; border-left:solid 1pt white; border-right:solid 1pt white">
+					<div class="red">Collider2D[Trigger]</div>
+					<div class="red">RigidBody2D[Kinematic]</div>
+					<div class="green">Trigger2D Event</div>
+				</td>
+				<td style="text-align:left; font-size:smaller">
+					<div class="red">Collider[Trigger]</div>
+					<div class="red">RigidBody[Kinematic]</div>
+					<div class="green">Trigger Event</div>
+				</td>
+			</tr>
+			<tr>
+				<th>עם פיסיקה</th>
+				<td style="text-align:left; font-size:smaller; border-left:solid 1pt white; border-right:solid 1pt white">
+					<div class="red">Collider2D</div>
+					<div class="red">RigidBody2D[Dynamic]</div>
+					<div class="green">Collision2D Event</div>
+				</td>
+				<td style="text-align:left; font-size:smaller">
+					<div class="red">Collider</div>
+					<div class="red">RigidBody[Dynamic]</div>
+					<div class="green">Collision Event</div>
+				</td>
+			</tr>
+		</table>
+		<a class="smaller" href="https://docs.unity3d.com/Manual/CollidersOverview.html">טבלה מפורטת באתר יוניטי</a>
+	</section>
+
+	<section>
+		<h2>טריגרים במשחק חלליות</h2>
+		<ol>
+			<li>השמדת השחקן כשהוא פוגע באויב</li>
+			<li>השמדת האויב כשפוגע בו לייזר</li>
+			<li>הוספת ניקוד לשחקן כשלייזר פוגע באויב</li>
+			<li>לקיחת מגינים</li>
+			<li>רעיונות נוספים במטלה</li>
+		</ol>
+	</section>
+</section>
+
+
+<section>
+	<h1>מעבר לסצינה  אחרת</h1>
+	<p class="blue">SceneManager.LoadScene:</p>
+	<ol>
+		<li>לפי שם או מספר סידורי;</li>
+		<li>שניהם "מסוכנים".</li>
+		<li>בשני המקרים יש להוסיף סצינות ל Build Settings.</li>
+	</ol>
+
+	<p class="blue">העברת משתנים בין סצינות:</p>
+	<ol>
+		<li>משתנה סטטי - קל בהתחלה, קשה בהמשך.</li>
+		<li>דגם עיצוב סינגלטון - להיפך.</li>
+	</ol>
+</section>
+
+
+
+<section>
+<h2>מושגים שלמדנו היום</h2>
+<ul>
+	<li>Prefab - דגם</li>
+	<li>Instantiate - יצירת עצם, Destroy - מחיקת עצם</li>
+	<li>Collision/Trigger - התנגשות</li>
+	<li>תגיות - Tags</li>
+	<li>פעולות מתוזמנות - CoRoutines</li>
+	<li>ירושה ב C#</li>
+	<li>מעבר סצינות - LoadScene</li>
+</ul>
+
+
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>
