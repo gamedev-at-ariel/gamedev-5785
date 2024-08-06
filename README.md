@@ -11,7 +11,20 @@
 * תהליך העיצוב והפיתוח של משחקים ומשחקי-מחשב.
 * תיכנות משחקים בשפת סי שארפ ומנוע יוניטי. 
 
-שימו לב: כדי לצפות במצגות, צריך לשבט את כל המאגר למחשב שלכם:
+במהלך הקורס תתכננו ותכתבו משחק מחשב מקורי, בדומה ל[משחקים שפיתחו סטודנטים בקורס בשנים קודמות](https://sites.google.com/view/gamedev-at-ariel).
+
+בשיעור האחרון של הקורס, תציגו את המשחק שלכם בפני צוות שופטים מבכירי ה[חברות לפיתוח משחקי מחשב בישראל](israeli-gamedev.md). הזוכים במקומות הראשונים יזכו בתוספת ניקוד לציון הקורס.
+
+למידע נוסף על הקורס:
+* [חוקי צבירת הנקודות בקורס](grade-rules.md)
+* [תקנון היושר בהגשת מטלות](https://www.ariel.ac.il/wp/cs/wp-content/uploads/sites/88/2020/08/Guidelines-for-Academic-Integrity.pdf)
+* [למי הקורס **לא** מתאים](disclaimer.md)
+* [דרישות חומרה ותוכנה](hardware.md)
+* [דוגמאות קוד להרצאות](../../../)
+
+## מצגות והקלטות
+
+כדי לצפות במצגות, צריך לשבט את כל המאגר למחשב שלכם:
 
     git clone https://github.com/gamedev-at-ariel/gamedev-5785.git
 
@@ -20,15 +33,9 @@
 `slides.html`
 בדפדפן כלשהו.
 
+ניתן גם לצפות ב[הקלטות הקורס משנת ה'תשפ"ב](https://www.youtube.com/playlist?list=PLM9fKcsATjxjqsyIcU4IRWuo-w4rQf_Pb).
 
-לפרטים נוספים על הקורס ראו:
-* [הקלטות הקורס משנת ה'תשפ"ב](https://www.youtube.com/playlist?list=PLM9fKcsATjxjqsyIcU4IRWuo-w4rQf_Pb)
-* [חוקי צבירת הנקודות בקורס](grade-rules.md)
-* [תקנון היושר בהגשת מטלות](https://www.ariel.ac.il/wp/cs/wp-content/uploads/sites/88/2020/08/Guidelines-for-Academic-Integrity.pdf)
-* [למי הקורס **לא** מתאים](disclaimer.md)
-* [דרישות חומרה ותוכנה](hardware.md)
-* [משחקונים שפיתחו סטודנטים שלמדו את הקורס בעבר](https://sites.google.com/view/gamedev-at-ariel)
-* [דוגמאות קוד להרצאות](../../../)
+## קישורים שימושיים
 * [איפה מוצאים משחקים בחינם](free-games.md)
 * [איפה מוצאים נכסים בחינם](free-assets.md)
 * [כנסים בינלאומיים שבהם אפשר להציג את המשחקים שלכם](conferences.md)
