@@ -106,3 +106,4 @@ $RECYCLE.BIN/
 
 # Pycharm project
 .idea
+.vsconfig
