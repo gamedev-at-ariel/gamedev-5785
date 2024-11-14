@@ -90,13 +90,6 @@
 			<td>1458 (#8)</td>
 		</tr>
 
-		<!--tr style="background:#008">
-			<th>Godot</th>
-			<td>Python-like/td>
-			<td style="font-size:smaller" >קוד פתוח לחלוטין.</td>
-			<td>889</td>
-			<td>24200</td>
-		</tr -->
 		</tbody>
 	</table>
 <a class="small" href="https://www.gamasutra.com/blogs/MarcusToftedahl/20190930/350830/Which_are_the_most_commonly_used_Game_Engines.php">מקור המידע</a>
@@ -104,17 +97,11 @@
 
 
 <section>
-	<h2>יוניטי וגיטהאב</h2>
-	<p class="red" style="font-size:90%">
-	לפני שנתחיל - 
+	<h2>התחלה</h2>
 	<ul>
 		<li class="fragment">התקנת Unity Hub</li>
 		<li class="fragment">התקנת מנוע Unity - בקורס נעבוד עם גרסת LTS המעודכנת ביותר.</li>
 		<li class="fragment">יצירת פרויקט חדש.</li>
-		<li class="fragment">
-		<a href='4-github-and-unity.pdf'>
-			כמה פרטים טכניים על גיטהאב ויוניטי שיחסכו לכם צרות בהמשך.
-		</a></li>
 	</ul>
 	
 	</p>
@@ -137,17 +124,49 @@
 		<li>מאפיינים - Properties [SerializeField] [Tooltip]</li>
 		<li>מצלמה - Camera</li>
 		<li>תת-עצמים</li>
-		<li>קלט מהמשתמש - InputAction</li>
 	</ol>
 </section>
 
 <section>
+	<h2>יוניטי - קלט מהמשתמש</h2>
+		<ol style="font-size:28px">
+			<li>פעולת קלט - InputAction</li>
+			<li>פעולה חד-ממדית - type: InputActionType.Button</li>
+			<ul>
+				<li>OnEnable, OnDisable</li>
+				<li>תנועה בדידה - WasPressedThisFrame</li>
+				<li>תנועה רציפה - IsPressed</li>
+			</ul>
+			<li>פעולה שמחזירה ערך דו-ממדי - type: InputActionType.Value, expectedControlType: nameof(Vector2)</li>
+			<ul>
+				<li>OnEnable, OnDisable</li>
+				<li>קריאת הערך - <span dir='ltr'>ReadValue&lt;Vector2&gt;()</span></li>
+				<li>תרגום מיקום במסך למיקום בעולם - Camera.main.ScreenToWorldPoint</li>
+			</ul>
+			<li>ניהול פעולות קלט - PlayerInput component</li>
+			<ul>
+				<li>תנועה בדידה - <span dir='ltr'>OnMove(InputValue value): position += value.Get&lt;Vector2&gt;()</span></li>
+				<li>תנועה רציפה - <span dir='ltr'>OnMove(InputValue value) + Update()</span></li>
+			</ul>
+		</ol>
+	</section>
+	
+
+<section>
 <h2>יוניטי - פרטים טכניים</h2>
 	<ol>
-		<li>בנית המשחק - Build Settings</li>
-		<li>פירסום המשחק -
+		<li>
+			<a href='4-github-and-unity.pdf'>
+				העלאת המשחק שלכם לגיטהאב
+		</a></li>
+		<li class="fragment">שינוי גודל התצוגה - Game/Simulator</li>
+		<li class="fragment">התאמת הרקע לתצוגה - Canvas, Image</li>
+		<li class="fragment">בנית המשחק - Build Profiles: Windows, WebGL</li>
+		<li class="fragment">גודל מסך המשחק - Player Settings</li>
+		<li class="fragment">פירסום המשחק -
 		<a href="http://itch.io">itch.io</a>
 		</li>
+	
 	</ol>
 </section>
 
