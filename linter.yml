@@ -1,50 +1,26 @@
----
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
-name: Lint Code Base
+name: Unity C# Linter
 
-#############################
-# Start the job on all push #
-#############################
 on:
-  push:
-  pull_request:
-    branches: [master, main]
+  push:  # Trigger on every push
+  pull_request:  # Also run on pull requests
 
-###############
-# Set the Job #
-###############
 jobs:
-  build:
-    # Name the Job
-    name: Lint Code Base
-    # Set the agent to run on
+  lint:
+    name: Run C# Linter
     runs-on: ubuntu-latest
 
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          # Full git history is needed to get a proper
-          # list of changed files within `super-linter`
-          fetch-depth: 0
 
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_SRC_PATH: "Assets/Scripts/**/*.cs"
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.x'  # Adjust to the required .NET version for Unity
+
+      - name: Install dotnet-format
+        run: dotnet tool install -g dotnet-format
+
+      - name: Run dotnet-format
+        # Run dotnet-format in check mode to identify issues only in .cs files in Assets/Scripts and subfolders
+        run: dotnet-format Assets/Scripts --check --folder --include **/*.cs --verbosity diagnostic
