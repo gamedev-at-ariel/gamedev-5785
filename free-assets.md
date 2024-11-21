@@ -31,6 +31,8 @@
 - [Creative Commons Search](https://ccsearch.creativecommons.org/search) - 
 מנוע חיפוש לנכסים עם רשיון לשימוש חופשי.
 
+- [Mixamo](https://www.mixamo.com/) - מגוון דמויות תלת-מימדיות עם אנימציה.
+
 
 </div>
 
