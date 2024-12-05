@@ -69,26 +69,45 @@
 	</section>
 	<section>
 		<p class="blue">אדם קופץ מהרצפה. מהירותו ברגע הקפיצה: 20 מטר/שניה.</p>
-		<ol>
-			<li class="fragment">תוך כמה זמן יעצור?
-				<div class="fragment" dir="ltr">&Delta; v / a = &Delta; t </small></div>
-				<div class="fragment" dir="ltr">-20 <small>[m/s]</small> / -10 <small>[m/s<sup>2</sup>]</small> = 2 <small>[s]</small></div>
-			</li>
-			<li class="fragment">לאיזה גובה יגיע?
-				<div class="fragment" dir="ltr">v * &Delta; t = &Delta; x </small></div>
-				<div class="fragment" dir="ltr">(20+0)/2 <small>[m/s]</small> * 2 <small>[s]</small> = 20 <small>[m]</small></div>
-				<div class="fragment" dir="ltr">v<sup>2</sup> / (2 a)  = &Delta; x</div>
-				<div class="fragment" dir="ltr">a * (&Delta; t)<sup>2</sup> / 2 = &Delta; x</div>
-			</li>
-		</ol>
+		<p>1. תוך כמה זמן יעצור?</p>
+				<div class="fragment" dir="ltr">&Delta; t  = &Delta; v<sub>y</sub> / a<sub>y</sub></small></div>
+				<div class="fragment" dir="ltr">&Delta; v<sub>y</sub>  = 0-20 <small>[m/s]</small></div>
+				<div class="fragment" dir="ltr"> a<sub>y</sub>  = -10 <small>[m/s<sup>2</sup>]</small></div>
+				<div class="fragment" dir="ltr">&Delta; t  = (0-20) / -10  = 2 <small>[s]</small></div>
 	</section>
 	<section>
+		<p class="blue">אדם קופץ מהרצפה. מהירותו ברגע הקפיצה: 20 מטר/שניה.</p>
+		<p>
+			2. לאיזה גובה יגיע?</p>
+				<div class="fragment" dir="ltr">&Delta; y = v<sub>y</sub> * &Delta; t </div>
+				<div class="fragment" dir="ltr">v<sub>y</sub><small>average</small> = (20+0)/2 = 10 <small>[m/s]</small></div>
+				<div class="fragment" dir="ltr">&Delta; t = 2 <small>[s]</small></div>
+				<div class="fragment" dir="ltr">&Delta; y = 10 * 2  = 20 <small>[m]</small></div>
+	</section>
+	<section>
+	<p class="blue">אדם קופץ מהרצפה.</p>
+		<p>
+			3. באיזו מהירות הוא צריך לקפוץ כדי להגיע לפלטפורמה בגובה 5 מטר?</p>
+				<div class="fragment" dir="ltr">&Delta; y = (v<sub>y</sub>+0)/2 * &Delta; t</div>
+				<div class="fragment" dir="ltr">&Delta; t = (v<sub>y</sub> / 10)</div>
+				<div class="fragment" dir="ltr">&Delta; y = v<sub>y</sub><sup>2</sup> / 20</div>
+				<div class="fragment" dir="ltr">v<sub>y</sub> = sqrt(20 &Delta; y) = 10</div>
+				<!--div class="fragment" dir="ltr">&Delta; y = a<sub>y</sub> * (&Delta; t)<sup>2</sup> / 2</div-->
+	</section>
+
+	<section>
 		<p class="blue">
-			CharacterController  - רכיב למשחק עם קינמטיקה בלבד (ללא כוחות):</p>
+			CharacterController  - רכיב למשחק עם קינמטיקה בלבד.</p>
 		<ul>
+			<li>כולל גוף קשיח קינמטי;</li>
 			<li>אפשר להזיז אותו בעזרת השיטה Move;</li>
-			<li>הוא לא עובר דרך Collider פיסיקלי;</li>
-			<li>הוא יכול לטפס על מדרגות עד גובה מסויים, ועל שיפועים עד זוית מסוימת;</li>
+			<li>מזהה קוליידרים פיסיקליים (= לא טריגר):
+				<ol>
+					<li>קירות</li>
+					<li>מדרגות עד גובה מסויים</li>
+					<li>שיפועים עד זוית מסוימת</li>
+				</ol>
+			</li>
 			<li>כל השאר - על אחריותנו.</li>
 		</ul>
 		<p class="small">ראו דוגמאות בתיקיה 1.</p>
