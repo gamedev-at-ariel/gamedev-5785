@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<title>פיתוח משחקי מחשב - שמירת נתוני שחקן</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css" />
+		<link rel="stylesheet" href="../revealjs/css/reveal.css" />
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css" />
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css" />		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css" />
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2>שמירת נתוני שחקן - Unity CloudSave</h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+<section>
+	<h2>המטרה</h2>
+	<p>אנחנו רוצים לשמור את הנתונים של שחקן מסויים לאורך זמן, למשל כדי לעקוב אחר ההתקדמות שלו.</p>
+
+	<h2>דרכים אפשריות</h2>
+	<ol>
+		<li>בזיכרון - ייעלם לאחר שהשחקן סוגר את המשחק;</li>
+		<li>בקובץ במחשב המקומי - ייעלם אם השחקן עובר לשחק במחשב אחר ;</li>
+		<li> במסד נתונים - דורש לנהל שרת פרטי.</li>
+	</ol>
+</section>	
+	
+<section>
+	<h2>הפתרון של יוניטי</h2>
+	<p>CloudSave - שמירת נתוני שחקן על הענן של יוניטי.</p>
+	<ol>
+		<li dir='ltr'>Window - Package Manager - Unity Registry - Authentication</li>
+		<li>הרשמה ל<a href='https://cloud.unity.com'>ענן של יוניטי</a></li>
+		<li dir='ltr'>Edit - Project Settings - Services - Unity Project ID</li> 
+
+
+		<li dir='ltr'>Window - Package Manager - Unity Registry - Cloud Save</li>
+	</ol>
+
+</section>	
+
+
+
+
+
+</div>
+</div>
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>
