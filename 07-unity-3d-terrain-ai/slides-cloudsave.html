@@ -36,19 +36,30 @@
 		<li>בקובץ במחשב המקומי - ייעלם אם השחקן עובר לשחק במחשב אחר ;</li>
 		<li> במסד נתונים - דורש לנהל שרת פרטי.</li>
 	</ol>
-</section>	
-	
+</section>
+
 <section>
-	<h2>הפתרון של יוניטי</h2>
-	<p>CloudSave - שמירת נתוני שחקן על הענן של יוניטי.</p>
+	<h2>הפתרון של יוניטי - CloudSave</h2>
+	<section>
+		הכנה:
 	<ol>
-		<li dir='ltr'>Window - Package Manager - Unity Registry - Authentication</li>
 		<li>הרשמה ל<a href='https://cloud.unity.com'>ענן של יוניטי</a></li>
 		<li dir='ltr'>Edit - Project Settings - Services - Unity Project ID</li> 
-
-
+		<li dir='ltr'>Window - Package Manager - Unity Registry - Authentication</li>
 		<li dir='ltr'>Window - Package Manager - Unity Registry - Cloud Save</li>
 	</ol>
+	</section>
+
+	<section>
+		ביצוע:
+	<ol dir="ltr">
+		<li dir='ltr'>UnityServices.InitializeAsync</li> 
+		<li dir='ltr'>AuthenticationService.Instance.SignInAnonymouslyAsync</li>
+		<li dir='ltr'>AuthenticationService.Instance.SignedIn += async () => { /* load */ };</li>
+		<li dir='ltr'>load: CloudSaveService.Instance.Data.Player.LoadAsync</li>
+		<li dir='ltr'>save: CloudSaveService.Instance.Data.Player.SaveAsync</li>
+	</ol>
+	</section>
 
 </section>	
 
