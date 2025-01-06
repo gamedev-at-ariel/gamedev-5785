@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>פיתוח משחקי מחשב - משחקים מרובי שחקנים - Unity</title>
+
+		<link rel="stylesheet" href="../revealjs/css/reset.css">
+		<link rel="stylesheet" href="../revealjs/css/reveal.css">
+		<link rel="stylesheet" href="../revealjs/css/theme/black.css">
+		<link rel="stylesheet" href="../revealjs/lib/css/monokai.css">		<!-- Theme used for syntax highlighting of code -->
+
+		<link rel="stylesheet" href="../utils/slides.css">
+	</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="firstslide">
+	<h1>פיתוח
+	<br/>
+		משחקי מחשב</h1>
+	<h2> משחקים מרובי-שחקנים </h2>
+	<p>אראל סגל-הלוי</p>
+</section>
+
+
+<section>
+	<h1>ריבוי שחקנים - אתגרים</h1>
+	<ol>
+		<li class="fragment">עקביות המצב - State Consistency		</li>
+		<li class="fragment">סמכות לשינוי המצב - State Authority		</li>
+	</ol>
+	</section>
+	
+
+<section>
+<h1>מנועי ריבוי שחקנים</h1>
+<ol>
+	<li class="fragment">Unity Netcode:
+		<ul>
+			<li>+: בא עם יוניטי.</li>
+			<li>-: רמת פיתוח נמוכה, ללא לובי.</li>
+		</ul>
+	</li>
+	<li class="fragment">Photon Fusion:
+		<ul>
+			<li>+: רמת פיתוח גבוהה, כולל לובי.</li>
+			<li>-: מסחרי - 
+				<a href="https://www.photonengine.com/fusion/pricing">בתשלום מעל 20 שחקנים בו-זמנית (CCU)</a>.
+			</li>
+		</ul>
+	</li>
+</ol>
+</section>
+
+<section>
+	<h1>ארכיטקטורת שרת-לקוח</h1>
+	<ol>
+		<li class="fragment">יש שרת אחד, שאחראי לשמירת מצב המשחק באופן עקבי בין כל הלקוחות.</li>
+		<li class="fragment">כל לקוח אחראי לקבלת קלט מהשחקן והצגת המשחק לשחקן אחד.  </li>
+		<li class="fragment">השרת מריץ למעשה "משחק לשחקן יחיד" עם קלט שמתקבל מרחוק.</li>
+	</ol>
+</section>
+
+<section>
+	<h1>Unity 6  - הכנה</h1>
+	<ol>
+		<li>Multiplayer Play Mode</li>
+		<li>Multiplayer Services</li>
+		<li>Multiplayer Tools</li>
+		<li>Netcode for GameObjects</li>
+	</ol>
+</section>
+
+<section>
+	<h2>מנהל הרשת - NetworkManager</h2>
+	<ul>
+		<li>סינגלטון; אחראי ליצירת עצמים ברשת, וחיבור הלקוחות והשרת.</li>
+		<li>NetworkTransport - UnityTransport - הרמה הנמוכה, מנהלת את התקשורת ברשת.</li>
+		<li>Prefab Settings - Default Player Prefab - הדגם שייווצר בכל פעם ששחקן חדש מתחבר.</li>
+	</ul>
+	<h2>NetworkObject - הגדרת עצם למשחק רשת</h2>
+	<ul>
+		<li>רכיב המתווסף לדגם של שחקן, כדי שיהיה אפשר לשתף אותו בין לקוחות ברשת.</li>
+	</ul>
+	<h2>בדיקה</h2>
+	<ul>
+		<li>Window - Multiplayer - Multiplayer Play Mode</li>
+		<li>Play</li>
+		<li>Hierarchy - Don't Destroy On Load - NetworkManager - Start Host</li>
+		<li>Hierarchy - Don't Destroy On Load - NetworkManager - Start Client</li>
+		<li>Network Visualization - Ownership</li>
+	</ul>
+</section>
+
+<section>
+	<h2>איך דואגים שכל שחקן יזיז רק את הדמות שלו?</h2>
+<ol>
+	<li class="fragment">נוסיף רכיב חדש ClientPlayerMove: NetworkBehavior.</li>
+	<li class="fragment">בשיטה OnNetworkSpawn, נבדוק אם IsOwner; רק אם כן, נאפשר את רכיבי התנועה.</li>
+</ol>
+</section>
+
+<section>
+	<h2>איך דואגים שהקלט של השרת יגיע ללקוח?</h2>
+	<ol>
+		<li class="fragment">NetworkTransform - העתקת נתוני מיקום</li>
+		<li class="fragment">NetworkAnimator - העתקת נתוני אנימציה</li>
+	</ol>
+</section>
+
+<section>
+	<h2>איך דואגים שהקלט של הלקוח יגיע לשרת?</h2>
+	<ol>
+		<li class="fragment">RPC</li>
+	</ol>
+	</section>
+
+
+
+
+
+</div><!--slides-->
+</div><!--reveal-->
+
+
+
+<script src="../revealjs/js/reveal.js"></script>
+<script src="../utils/slides.js"></script>
+
+</body>
+</html>
